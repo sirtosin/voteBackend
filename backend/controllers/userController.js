@@ -87,8 +87,17 @@ const generateToken = (id) => {
   })
 }
 
+//change hasVoted
+const changeHasVoted = asyncHandler(async (req, res) => {
+  const { hasVoted } = req.body
+  const user = await User.findByIdAndUpdate(req.user._id, { hasVoted })
+  res.status(200).json(user)
+
+})
+
 module.exports = {
   registerUser,
   loginUser,
   getMe,
+  changeHasVoted
 }
