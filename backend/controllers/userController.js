@@ -40,8 +40,9 @@ const registerUser = asyncHandler(async (req, res) => {
       name: user.name,
       email: user.email,
       nin: user.nin,
+      hasVoted: false,
       token: generateToken(user._id),
-    })
+    });
   } else {
     res.status(400)
     throw new Error('Invalid user data')
