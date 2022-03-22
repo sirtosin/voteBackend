@@ -16,8 +16,7 @@ const userSchema = mongoose.Schema(
       required: [true, 'Please add your nin'],
     },
     hasVoted: {
-      type: Boolean,
-      default: false,
+      type: String,
     },
     password: {
       type: String,
