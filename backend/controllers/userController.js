@@ -41,6 +41,7 @@ const registerUser = asyncHandler(async (req, res) => {
       name: user.name,
       email: user.email,
       nin: user.nin,
+      hasVoted: false,
       token: generateToken(user._id),
     });
   } else {
@@ -64,6 +65,7 @@ const loginUser = asyncHandler(async (req, res) => {
       name: user.name,
       email: user.email,
       nin: user.nin,
+      hasVoted:false,
       token: generateToken(user._id),
     });
   } else {
@@ -86,17 +88,8 @@ const generateToken = (id) => {
   });
 };
 
-//change hasVoted
-const changeHasVoted = asyncHandler(async (req, res) => {
-  const user = await User.findOne(
-    {hasVoted: false},
-  );
-  res.status(200).json(user);
-});
-
 module.exports = {
   registerUser,
   loginUser,
   getMe,
-  changeHasVoted,
 };
