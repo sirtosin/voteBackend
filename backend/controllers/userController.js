@@ -98,9 +98,9 @@ const getUsers = asyncHandler(async (req, res) => {
 // @route   PUT /api/users/:id
 // @access  Private
 const updateUser = asyncHandler(async (req, res) => {
-  const { hasVoted } = req.body;
+  const { hasVoted, name } = req.body;
   const user = await User.findByIdAndUpdate(req.params.id, {
-    hasVoted,
+    hasVoted,name
   }, { new: true }
   );
   res.status(200).json(user);
