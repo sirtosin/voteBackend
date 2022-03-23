@@ -88,8 +88,27 @@ const generateToken = (id) => {
   });
 };
 
+//get users
+const getUsers = asyncHandler(async (req, res) => {
+  const user = await User.find();
+  res.status(200).json(user);
+})
+
+// @desc    Update user data
+// @route   PUT /api/users/:id
+// @access  Private
+const updateUser = asyncHandler(async (req, res) => {
+  const { hasVoted } = req.body;
+  const user = await User.findByIdAndUpdate(req.params.id, {
+    hasVoted,
+  }, { new: true }
+  );
+  res.status(200).json(user);
+})
 module.exports = {
   registerUser,
   loginUser,
   getMe,
+  getUsers,
+  updateUser,
 };
